@@ -38,6 +38,13 @@ class Post
     #[ORM\Column]
     private ?int $numComments = null;
 
+
+    public function __construct()
+    {
+        $this->publishedAt = new \DateTime();
+    }
+
+
     public function getId(): ?int
     {
         return $this->id;
@@ -74,7 +81,7 @@ class Post
 
     public function setPublishedAt(\DateTimeInterface $publishedAt): self
     {
-        $this->publishedAt = new \DateTime();
+        $this->publishedAt = $publishedAt;
 
         return $this;
     }
