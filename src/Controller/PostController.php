@@ -34,13 +34,13 @@ class PostController extends AbstractController
             $entityManager->flush();
             // do anything else you need here, like send an email
 
-            return $this->render('post/index.html.twig', array(
+            return $this->render('post/images.html.twig', array(
                 'form' => $form->createView()
             ));
         }
 
 
-        return $this->render('post/index.html.twig', array(
+        return $this->render('post/images.html.twig', array(
             'form' => $form->createView()
         ));
     }
