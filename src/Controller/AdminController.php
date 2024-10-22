@@ -61,7 +61,7 @@ class AdminController extends AbstractController
             $entityManager->persist($image);
             $entityManager->flush();
         }
-        return $this->render('admin/images.html.twig', array(
+        return $this->render('admin/images_list.html.twig', array(
             'form' => $form->createView(),
             'images' => $images
         ));

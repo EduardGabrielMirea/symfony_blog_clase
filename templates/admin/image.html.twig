@@ -1,11 +1,19 @@
 {% extends 'base.html.twig' %}
-{% block title%}New Post{% endblock %}
+{% block title%}Images{% endblock %}
 {% block body%}
     <!-- Principal Content Start -->
-    <div id="new Post">
+    <!--<div id="images">
         <div class="container">
             <div class="col-xs-12 col-sm-8 col-sm-push-2">
-                <h1>New Post</h1>
+                <h1>Images</h1>
+                <hr>
+            </div>
+        </div>
+    </div>-->
+    <div id="images">
+        <div class="container">
+            <div class="col-xs-12 col-sm-8 col-sm-push-2">
+                <h1>Images</h1>
                 {{ form(form, {'attr': {'class':'form-horizontal'}}) }}
                 <hr class="divider">
             </div>
@@ -13,4 +21,3 @@
     </div>
     <!-- Principal Content Start -->
 {% endblock %}
-

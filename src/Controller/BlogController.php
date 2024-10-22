@@ -10,10 +10,15 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class BlogController extends AbstractController
 {
-    #[Route('/blog', name: 'blog')]
-    public function index(): Response
+    #[Route('/blog', name: 'app_blog')]
+    public function index(ManagerRegistry $doctrine, int $page = 1): Response
     {
-        return $this->render('blog.html.twig', []);
+        $repository = $doctrine->getRepository(Post::class);
+        $posts = $repository->findAll($page);
+
+        return $this->render('blog.html.twig', [
+            'posts' => $posts,
+        ]);
     }
 
 

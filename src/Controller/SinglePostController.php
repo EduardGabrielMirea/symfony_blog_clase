@@ -10,7 +10,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class SinglePostController extends AbstractController
 {
-    #[Route('/blog/post/{slug}', name: 'single_post')]
+    #[Route('/singlePost/{slug}', name: 'app_single_post')]
     public function post(ManagerRegistry $doctrine, $slug): Response
     {
         $repositorio = $doctrine->getRepository(Post::class);

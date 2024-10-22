@@ -14,8 +14,15 @@ use Symfony\Component\String\Slugger\SluggerInterface;
 
 class PostController extends AbstractController
 {
+    #[Route('/post', name: 'app_post')]
+    public function index(): Response
+    {
+        return $this->render('post/index.html.twig', [
+            'controller_name' => 'PostController',
+        ]);
+    }
     #[Route('/blog/new', name: 'new_post')]
-    public function newPost(SluggerInterface $slugger,Request $request,EntityManagerInterface $entityManager): Response
+    public function newPost(SluggerInterface $slugger,Request $request,EntityManagerInterface $entityManager,ManagerRegistry $doctrine): Response
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         $post = new Post();
@@ -25,23 +32,34 @@ class PostController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
 
             $post = $form->getData();
-
             $post->setPostUser($this->getUser());
             $post->setSlug($slugger->slug($post->getTitle()));
             $post->setNumLike(0);
             $post->setNumComments(0);
+            $file = $form->get('file')->getData();
 
+            if ($file) {
+                $originalFilename = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
+                $newFilename = $slugger->slug($originalFilename) . '-' . uniqid() . '.' . $file->guessExtension();
+
+                $file->move(
+                    $this->getParameter('images_directory'),
+                    $newFilename
+                );
+
+                $post->setImage($newFilename);
+            }
+
+            $entityManager = $doctrine->getManager();
             $entityManager->persist($post);
             $entityManager->flush();
             // do anything else you need here, like send an email
 
-            return $this->render('post/new_post.html.twig', array(
-                'form' => $form->createView()
-            ));
+            return $this->redirectToRoute('app_single_post', ["slug" => $post->getSlug()]);
         }
 
 
-        return $this->render('post/new_post.html.twig', array(
+        return $this->render('blog/new_post.html.twig', array(
             'form' => $form->createView()
         ));
     }

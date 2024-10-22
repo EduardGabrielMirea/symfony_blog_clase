@@ -1,5 +1,7 @@
 {% extends 'base.html.twig' %}
-{% block title %} Blog {% endblock %}
+
+{% block title %}Blog{% endblock %}
+
 {% block body %}
     <!-- Principal Content Start -->
     <div id="blog">
@@ -7,6 +9,10 @@
             <div class="row">
 
                 <!-- Blocks of Posts -->
+                {% for post in posts %}
+                    {{ include ('partials/_post.html.twig', {'post': post}) }}
+                {% endfor %}
+
                 <div class="col-xs-12 col-sm-8 row">
                     <div class="col-xs-12 col-sm-12">
                         <div class="post">
@@ -15,13 +21,13 @@
                                 <img class="img-responsive" src="images/blog/landscape.jpg" alt="post's picture">
                             </div>
                             <div class="post-body">
-                                <h3><a href="{{ path('single_post') }}"><strong>doloremque illum</strong></a></h3>
+                                <h3><a href="{{ path('app_post') }}"><strong>doloremque illum</strong></a></h3>
                                 <hr>
                                 <p>Duis ultrices tortor non felis convallis bibendum. Maecenas diam velit, sollicitudin at imperdiet ac, consectetur non nibh. Etiam eget dapibus nulla.
                                 </p>
                             </div>
                             <div class="post-footer">
-                                <a class="btn" href="{{ path('single_post') }}">READ MORE...</a>
+                                <a class="btn" href="{{ path('app_post') }}">READ MORE...</a>
                                 <span>
                  <i class="fa fa-heart sr-icons"></i> 10
                  <i class="fa fa-comments sr-icons"></i> 10
@@ -36,13 +42,13 @@
                                 <img class="img-responsive" src="images/blog/family.jpg" alt="post's picture">
                             </div>
                             <div class="post-body">
-                                <h3><a href="{{ path('single_post') }}"><strong>Lorem ipsum</strong></a></h3>
+                                <h3><a href="{{ path('app_post') }}"><strong>Lorem ipsum</strong></a></h3>
                                 <hr>
                                 <p>Nunc sit amet dapibus est, sit amet varius risus. Donec luctus lacinia mauris, at feugiat ligula facilisis ac. Class aptent taciti sociosqu ad litora torquent per conubia.
                                 </p>
                             </div>
                             <div class="post-footer">
-                                <a class="btn" href="{{ path('single_post') }}">READ MORE...</a>
+                                <a class="btn" href="{{ path('app_post') }}">READ MORE...</a>
                                 <span>
                  <i class="fa fa-heart sr-icons"></i> 10
                  <i class="fa fa-comments sr-icons"></i> 10
@@ -57,13 +63,13 @@
                                 <img class="img-responsive" src="images/blog/elephant.jpg" alt="post's picture">
                             </div>
                             <div class="post-body">
-                                <h3><a href="{{ path('single_post') }}"><strong>Aliquam soluta</strong></a></h3>
+                                <h3><a href="{{ path('app_post') }}"><strong>Aliquam soluta</strong></a></h3>
                                 <hr>
                                 <p>In felis ante, aliquet sit amet venenatis at, feugiat sed leo. Fusce pretium, velit in luctus ornare, elit lorem ultrices tortor, sed consectetur orci risus mollis ante.
                                 </p>
                             </div>
                             <div class="post-footer">
-                                <a class="btn" href="{{ path('single_post') }}">READ MORE...</a>
+                                <a class="btn" href="{{ path('app_post') }}">READ MORE...</a>
                                 <span>
                  <i class="fa fa-heart sr-icons"></i> 10
                  <i class="fa fa-comments sr-icons"></i> 10
@@ -124,7 +130,7 @@
                  <i class="fa fa-heart sr-icons"></i> 10
                  <i class="fa fa-comments sr-icons"></i> 10
                  </span>
-                            <h4 class="text-left"><a href="{{ path('single_post') }}"><strong>Aliquam soluta</strong></a></h4>
+                            <h4 class="text-left"><a href="{{ path('app_post') }}"><strong>Aliquam soluta</strong></a></h4>
                         </div>
                     </div>
                     <div class="post">
@@ -137,7 +143,7 @@
                  <i class="fa fa-heart sr-icons"></i> 10
                  <i class="fa fa-comments sr-icons"></i> 10
                  </span>
-                            <h4 class="text-left"><a href="{{ path('single_post') }}"><strong>Consequuntur</strong></a></h4>
+                            <h4 class="text-left"><a href="{{ path('app_post') }}"><strong>Consequuntur</strong></a></h4>
                         </div>
                     </div>
                 </div>
