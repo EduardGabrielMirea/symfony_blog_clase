@@ -17,6 +17,7 @@ class PostController extends AbstractController
     #[Route('/blog/new', name: 'new_post')]
     public function newPost(SluggerInterface $slugger,Request $request,EntityManagerInterface $entityManager): Response
     {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         $post = new Post();
         $form = $this->createForm(PostFormType::class, $post);
         $form->handleRequest($request);
@@ -34,13 +35,13 @@ class PostController extends AbstractController
             $entityManager->flush();
             // do anything else you need here, like send an email
 
-            return $this->render('post/images.html.twig', array(
+            return $this->render('post/new_post.html.twig', array(
                 'form' => $form->createView()
             ));
         }
 
 
-        return $this->render('post/images.html.twig', array(
+        return $this->render('post/new_post.html.twig', array(
             'form' => $form->createView()
         ));
     }

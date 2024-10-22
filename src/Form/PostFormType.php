@@ -16,24 +16,15 @@ class PostFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add(
-                'title',
-                TextType::class,
-                [
+            ->add('title', TextType::class, [
                     'attr' => ['class' => 'form-control-file'],
                     'required' => true,
                 ])
-            ->add(
-                'content',
-                TextareaType::class,
-                [
+            ->add('content', TextareaType::class, [
                     'attr' => ['class' => 'form-control-file'],
                     'required' => true,
                 ])
-            ->add(
-                'image',
-                FileType::class,
-                [
+            ->add('image', FileType::class, [
                 'label' => 'Imagen (PNG, JPG)',
                 'mapped' => false, // No está mapeado a la entidad
                 'required' => true,
